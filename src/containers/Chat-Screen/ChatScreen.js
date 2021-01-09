@@ -6,7 +6,6 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import styles from './chat-screen.css';
 import {SOCKET} from '../../config/config';
 import {Text} from 'react-native-elements';
-import AntDesign from 'react-native-vector-icons/AntDesign';
 
 const ChatScreen = (props) => {
   const [messages, setMessages] = useState([]);
@@ -28,26 +27,11 @@ const ChatScreen = (props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // useEffect(() => {
-  //   setMessages([
-  //     {
-  //       _id: 1,
-  //       text: 'Hello developer',
-  //       createdAt: new Date(),
-  //       user: {
-  //         _id: 2,
-  //         name: 'React Native',
-  //         avatar: 'https://placeimg.com/140/140/any',
-  //       },
-  //     },
-  //   ]);
-  // }, []);
-
-  const onSend = useCallback((messages = []) => {
+  const onSend = useCallback((message = []) => {
     setMessages((previousMessages) =>
-      GiftedChat.append(previousMessages, messages),
+      GiftedChat.append(previousMessages, message),
     );
-    SOCKET.emit('chatMessage', messages);
+    SOCKET.emit('chatMessage', message);
   }, []);
 
   const renderInputToolbar = (props) => {
@@ -105,11 +89,11 @@ const ChatScreen = (props) => {
         }}
         wrapperStyle={{
           right: {
-            backgroundColor: '#A2E8DD',
+            backgroundColor: '#0F0326',
             borderColor: '#000000',
           },
           left: {
-            backgroundColor: '#E5D9FC',
+            backgroundColor: '#D5E3EC',
           },
         }}
       />
@@ -126,14 +110,17 @@ const ChatScreen = (props) => {
       <AppHeader
         headerTitle={props.route.params.room}
         rightComponent={
-          <AntDesign
-            name="logout"
-            size={16}
-            color="#ffffff"
-            onPress={() => {
-              leftFromGroup();
-            }}
-          />
+          <>
+            <TouchableOpacity
+              onPress={() => {
+                leftFromGroup();
+              }}>
+              <Text style={styles.leftGroupButton}>
+                Left{' '}
+                <Ionicons name="backspace-outline" size={16} color="#ffffff" />
+              </Text>
+            </TouchableOpacity>
+          </>
         }
       />
       <GiftedChat

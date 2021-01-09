@@ -23,11 +23,7 @@ export default StyleSheet.create({
     marginRight: '0%',
     marginBottom: '30%',
   },
-  // loginCardContainer: {
-  //   borderRadius: 10,
-  //   marginRight: 10,
-  //   marginLeft: 10,
-  //   width: 350,
-  //   height: 350,
-  // },
+  leftGroupButton: {
+    color: 'white',
+  },
 });

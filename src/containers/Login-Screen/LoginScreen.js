@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import {View} from 'react-native';
+import React, {useState, useEffect} from 'react';
+import {View, Alert} from 'react-native';
 // import AppHeader from '../../components/App-Header/AppHeader';
 import {Card} from 'react-native-elements';
 import MyTextInput from '../../components/My-TextInput/MyTextInput';
@@ -9,8 +9,10 @@ import {SOCKET} from '../../config/config';
 // import {API_URL} from '../../config/config';
 import 'react-native-get-random-values';
 import {v4 as uuidv4} from 'uuid';
+// import {useIsFocused} from '@react-navigation/native';
 
 const LoginScreen = (props) => {
+  // const isFocused = useIsFocused();
   const [values, setValues] = useState({
     roomName: '',
     userName: '',
@@ -21,23 +23,27 @@ const LoginScreen = (props) => {
   };
 
   const handleLogin = () => {
-    let id = uuidv4();
-    // return fetch(API_URL + '/get')
-    //   .then((response) => response.json())
-    //   .then((data) => console.log(data));
-    // socket.connect();
-    // socket.on('connect', () => {
-    SOCKET.emit('joinRoom', {
-      username: values.userName,
-      room: values.roomName,
-      userId: id,
-    });
-    // });
-    props.navigation.navigate('chat', {
-      username: values.userName,
-      room: values.roomName,
-      userId: id,
-    });
+    if (values.roomName === '') {
+      Alert.alert('Room Name is required');
+    } else {
+      if (values.userName === '') {
+        Alert.alert('UserName is required');
+      } else {
+        let id = uuidv4();
+
+        SOCKET.connect();
+        SOCKET.emit('joinGroup', {
+          username: values.userName,
+          room: values.roomName,
+          userId: id,
+        });
+        props.navigation.navigate('chat', {
+          username: values.userName,
+          room: values.roomName,
+          userId: id,
+        });
+      }
+    }
   };
 
   return (
