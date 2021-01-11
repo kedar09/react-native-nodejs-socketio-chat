@@ -5,7 +5,6 @@ const {
   userJoinGroup,
   getCurrentUserDetails,
   userLeaveGroup,
-  getGroupUsers,
 } = require('./utils/users');
 
 io.on('connection', (socket) => {
@@ -17,8 +16,7 @@ io.on('connection', (socket) => {
     // Broadcast when a user connects
     socket.broadcast
       .to(user.room)
-      .emit('message', `${user.username} has joined group`);
-
+      .emit('roomNotification', `${user.username} has joined group`);
   });
 
   // Listen for chatMessage
@@ -32,7 +30,10 @@ io.on('connection', (socket) => {
     const user = userLeaveGroup(socket.id);
 
     if (user) {
-      io.to(user.room).emit('message', `${user.username} has left the group`);
+      io.to(user.room).emit(
+        'roomNotification',
+        `${user.username} has left the group`,
+      );
     }
   });
 });

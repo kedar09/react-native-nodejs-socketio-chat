@@ -10,8 +10,8 @@ import {Text} from 'react-native-elements';
 const ChatScreen = (props) => {
   const [messages, setMessages] = useState([]);
 
-  const getMessages = () => {
-    SOCKET.on('message', (data) => {
+  const getMessages = async () => {
+    await SOCKET.on('message', (data) => {
       console.log(data[0].user._id);
 
       if (props.route.params.userId !== data[0].user._id) {

@@ -23,14 +23,8 @@ function userLeaveGroup(id) {
   }
 }
 
-// Get all users of group
-function getGroupUsers(room) {
-  return users.filter((user) => user.room === room);
-}
-
 module.exports = {
   userJoinGroup,
   getCurrentUserDetails,
   userLeaveGroup,
-  getGroupUsers,
 };
