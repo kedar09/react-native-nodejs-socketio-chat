@@ -1,4 +1,4 @@
-import React, {useState, useCallback, useEffect} from 'react';
+import React, {useState, useCallback, useEffect, useRef} from 'react';
 import {GiftedChat, InputToolbar, Send, Bubble} from 'react-native-gifted-chat';
 import {TouchableOpacity} from 'react-native';
 import AppHeader from '../../components/App-Header/AppHeader';
@@ -9,21 +9,23 @@ import {Text} from 'react-native-elements';
 
 const ChatScreen = (props) => {
   const [messages, setMessages] = useState([]);
-
-  const getMessages = async () => {
-    await SOCKET.on('message', (data) => {
-      console.log(data[0].user._id);
-
-      if (props.route.params.userId !== data[0].user._id) {
-        setMessages((previousMessages) =>
-          GiftedChat.append(previousMessages, data),
-        );
-      }
-    });
-  };
+  const isRendered = useRef(false);
 
   useEffect(() => {
-    getMessages();
+    // isRendered.current = true;
+    SOCKET.on('message', (data) => {
+      if (props.route.params.userId !== data[0].user._id) {
+        // let previousMessages = messages;
+        if (!isRendered.current) {
+          setMessages((previousMessages) =>
+            GiftedChat.append(previousMessages, data),
+          );
+        }
+      }
+    });
+    return () => {
+      isRendered.current = true;
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -116,7 +118,7 @@ const ChatScreen = (props) => {
                 leftFromGroup();
               }}>
               <Text style={styles.leftGroupButton}>
-                Left{' '}
+                Left
                 <Ionicons name="backspace-outline" size={16} color="#ffffff" />
               </Text>
             </TouchableOpacity>

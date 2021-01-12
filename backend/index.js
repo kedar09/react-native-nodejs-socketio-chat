@@ -1,6 +1,7 @@
 const app = require('express')();
 const http = require('http').Server(app);
 const io = require('socket.io')(http);
+
 const {
   userJoinGroup,
   getCurrentUserDetails,
@@ -30,6 +31,7 @@ io.on('connection', (socket) => {
     const user = userLeaveGroup(socket.id);
 
     if (user) {
+      console.log(`${user.username} is left the group!`);
       io.to(user.room).emit(
         'roomNotification',
         `${user.username} has left the group`,

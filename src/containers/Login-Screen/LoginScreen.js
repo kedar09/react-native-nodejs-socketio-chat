@@ -9,18 +9,21 @@ import {SOCKET} from '../../config/config';
 // import {API_URL} from '../../config/config';
 import 'react-native-get-random-values';
 import {v4 as uuidv4} from 'uuid';
-// import {useIsFocused} from '@react-navigation/native';
+import {useIsFocused} from '@react-navigation/native';
 
 const LoginScreen = (props) => {
-  // const isFocused = useIsFocused();
-  const [values, setValues] = useState({
-    roomName: '',
-    userName: '',
-  });
+  const isFocused = useIsFocused();
+  const [values, setValues] = useState({});
 
   const handleChange = (name) => (text) => {
     setValues({...values, [name]: text});
   };
+
+  useEffect(() => {
+    return () => {
+      setValues({});
+    };
+  }, [isFocused]);
 
   const handleLogin = () => {
     if (values.roomName === '') {
