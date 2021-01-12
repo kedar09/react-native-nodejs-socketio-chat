@@ -2,7 +2,6 @@
 React Native Chat App using React Native, Node.js, Socket.IO.
 
 **Prerequisites:**
-Make sure you have:
 1. [React Native](https://reactnative.dev/docs/getting-started)
 2. [React Navigation](https://reactnavigation.org/)
 3. [Express](https://expressjs.com/)
@@ -13,7 +12,7 @@ Make sure you have:
 
 **Run this project by this command :**
 1. `git clone https://github.com/kedar09/react-native-nodejs-socketio-chat.git`
-2. `cd react-native-nodejs-socketio-chat
+2. `cd react-native-nodejs-socketio-chat`
 3. `npm install`
 4. `npx react-native start`
 5. `npx react-native run-android`
