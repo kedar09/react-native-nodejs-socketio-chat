@@ -8,7 +8,6 @@ import styles from './login-screen.css';
 import {SOCKET} from '../../config/config';
 // import {API_URL} from '../../config/config';
 import 'react-native-get-random-values';
-import {v4 as uuidv4} from 'uuid';
 import {useIsFocused} from '@react-navigation/native';
 
 const LoginScreen = (props) => {
@@ -32,18 +31,15 @@ const LoginScreen = (props) => {
       if (values.userName === '') {
         Alert.alert('UserName is required');
       } else {
-        let id = uuidv4();
-
+        
         SOCKET.connect();
         SOCKET.emit('joinGroup', {
           username: values.userName,
           room: values.roomName,
-          userId: id,
         });
         props.navigation.navigate('chat', {
           username: values.userName,
           room: values.roomName,
-          userId: id,
         });
       }
     }
