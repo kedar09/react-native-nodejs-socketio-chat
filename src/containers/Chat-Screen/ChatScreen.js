@@ -12,14 +12,10 @@ const ChatScreen = (props) => {
   const isRendered = useRef(false);
 
   useEffect(() => {
-    // isRendered.current = true;
     SOCKET.on('message', (data) => {
       console.log(props.route.params.userId);
       if (props.route.params.userId !== data[0].user._id) {
-        // let previousMessages = messages;
-        // console.log('called1');
         if (!isRendered.current) {
-          // console.log('called2');
           setMessages((previousMessages) =>
             GiftedChat.append(previousMessages, data),
           );
