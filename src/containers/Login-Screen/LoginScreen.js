@@ -9,6 +9,8 @@ import {SOCKET} from '../../config/config';
 // import {API_URL} from '../../config/config';
 import 'react-native-get-random-values';
 import {useIsFocused} from '@react-navigation/native';
+import 'react-native-get-random-values';
+import {v4 as uuidv4} from 'uuid';
 
 const LoginScreen = (props) => {
   const isFocused = useIsFocused();
@@ -31,7 +33,8 @@ const LoginScreen = (props) => {
       if (values.userName === '') {
         Alert.alert('UserName is required');
       } else {
-        
+        let id = uuidv4();
+
         SOCKET.connect();
         SOCKET.emit('joinGroup', {
           username: values.userName,
@@ -40,6 +43,7 @@ const LoginScreen = (props) => {
         props.navigation.navigate('chat', {
           username: values.userName,
           room: values.roomName,
+          userId: id,
         });
       }
     }
