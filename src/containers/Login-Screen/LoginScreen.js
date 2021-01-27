@@ -1,12 +1,10 @@
 import React, {useState, useEffect} from 'react';
 import {View, Alert} from 'react-native';
-// import AppHeader from '../../components/App-Header/AppHeader';
 import {Card} from 'react-native-elements';
 import MyTextInput from '../../components/My-TextInput/MyTextInput';
 import MyButton from '../../components/My-Button/MyButton';
 import styles from './login-screen.css';
 import {SOCKET} from '../../config/config';
-// import {API_URL} from '../../config/config';
 import 'react-native-get-random-values';
 import {useIsFocused} from '@react-navigation/native';
 import 'react-native-get-random-values';
