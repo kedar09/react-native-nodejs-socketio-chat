@@ -1,6 +1,6 @@
 # React Native Chat App
-React Native Chat App using React Native, Node.js, Socket.IO.
-
+Chat Application using React Native, Node.js, Socket.IO
+ 
 **Prerequisites:**
 1. [React Native](https://reactnative.dev/docs/getting-started)
 2. [React Navigation](https://reactnavigation.org/)
