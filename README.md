@@ -18,3 +18,8 @@ Chat Application using React Native, Node.js, Socket.IO
 5. `npx react-native run-android`
 6. `cd backend`
 7. `node index.js`
+
+
+**Example :**
+
+<img alt="react-native-gifted-chat" src="https://github.com/kedar09/react-native-nodejs-socketio-chat/blob/master/ReactNativeSocketIOExample.gif" width="260" height="510" />
