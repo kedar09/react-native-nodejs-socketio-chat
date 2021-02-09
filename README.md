@@ -22,4 +22,4 @@ Group Chat Application using React Native, Node.js, Socket.IO
 
 **Example :**
 
-<img alt="react-native-gifted-chat" src="https://github.com/kedar09/react-native-nodejs-socketio-chat/blob/master/ReactNativeSocketIOExample.gif" width="260" height="510" />
+<img alt="react-native-chat-app" src="https://github.com/kedar09/react-native-nodejs-socketio-chat/blob/master/ReactNativeSocketIOExample.gif" width="260" height="510" />
